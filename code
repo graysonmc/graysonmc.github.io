@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Color Poll</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Which color do you prefer?</h1>
+    <div class="poll">
+      <button id="blue" onclick="vote('blue')">Blue</button>
+      <button id="red" onclick="vote('red')">Red</button>
+    </div>
+    <div class="results">
+      <h2>Results:</h2>
+      <p id="blueResult"></p>
+      <p id="redResult"></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+.poll {
+  text-align: center;
+  margin: 50px 0;
+}
+
+button {
+  font-size: 24px;
+  padding: 10px 20px;
+  margin: 0 20px;
+}
+
+.results {
+  text-align: center;
+  margin: 50px 0;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+p {
+  font-size: 20px;
+}
+
+let blueVotes = 0;
+let redVotes = 0;
+
+function vote(color) {
+  if (color === 'blue') {
+    blueVotes++;
+  } else if (color === 'red') {
+    redVotes++;
+  }
+  updateResults();
+}
+
+function updateResults() {
+  const totalVotes = blueVotes + redVotes;
+  const bluePercent = Math.round((blueVotes / totalVotes) * 100);
+  const redPercent = Math.round((redVotes / totalVotes) * 100);
+  document.getElementById('blueResult').innerText = `Blue: ${bluePercent}%`;
+  document.getElementById('redResult').innerText = `Red: ${redPercent}%`;
+}
